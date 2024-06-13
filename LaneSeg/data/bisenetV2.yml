@@ -25,7 +25,7 @@
 
 ### Export inference model
 #   cd LaneSeg
-#   python3 export_model.py --config data/${task_name}/${config_name}.yml --input_shape 1 3 512 512 --model_path workspace/${task_name}/best_model/model.pdparams --save_dir workspace/${task_name}/inference
+#   python3 export.py --config data/${task_name}/${config_name}.yml --model_path workspace/${task_name}/best_model/model.pdparams --save_dir workspace/${task_name}/inference
 
 ########################################################################################
 ## dataset root
@@ -42,7 +42,7 @@ _learning_rate: &_learning_rate 0.001
 
 #### >>>>> global <<<<< ######################################
 batch_size: *_batch_size
-iters: 300000
+iters: 30000
 
 model:
   type: BiSeNetV2
@@ -72,10 +72,10 @@ lr_scheduler:
 train_dataset:
   type: Tusimple
   dataset_root: *_dataset_root
-  cut_height: 240
+  cut_height: 240 # 160
   transforms:
     - type: SubImgCrop
-      offset_top: 240
+      offset_top: 240 # 160
     - type: LaneRandomRotation
       max_rotation: 10
       im_padding_value: [0, 0, 0]
@@ -83,7 +83,7 @@ train_dataset:
       keeping_size: True
     - type: RandomHorizontalFlip
     - type: Resize
-      target_size: [960, 552]
+      target_size: [960, 552] # 640, 368
     - type: RandomDistort
       brightness_range: 0.25
       brightness_prob: 1
@@ -100,12 +100,12 @@ train_dataset:
 val_dataset:
   type: Tusimple
   dataset_root: *_dataset_root
-  cut_height: 240
+  cut_height: 240 # 160
   transforms:
     - type: SubImgCrop
-      offset_top: 240
+      offset_top: 240 # 160
     - type: Resize
-      target_size: [960, 552]
+      target_size: [960, 552] # 640, 368
     - type: Normalize
   mode: val
 

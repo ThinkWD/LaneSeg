@@ -65,7 +65,7 @@ class Tusimple(paddle.io.Dataset):
         mode (str, optional): Which part of dataset to use. it is one of ('train', 'val', 'test'). Default: 'train'.
         cut_height (int, optional): Whether to cut image height while training. Default: 0
     """
-    NUM_CLASSES = 7
+    NUM_CLASSES = 5
 
     def __init__(self,
                  transforms=None,

@@ -44,12 +44,13 @@ class TusimpleProcessor:
         self.color_map = [(255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0),
                           (255, 0, 255), (0, 255, 125), (50, 100, 50),
                           (100, 50, 100)]
+        points_nums = int(ori_shape[0] * 0.1 - round(ori_shape[0] * 0.1 / 4.5))
         self.laneProcessor = LaneProcessor(
             num_classes=self.num_classes,
             ori_shape=ori_shape,
             cut_height=cut_height,
             y_pixel_gap=10,
-            points_nums=56,
+            points_nums=points_nums,
             thresh=thresh,
             smooth=True)
 
@@ -72,8 +73,8 @@ class TusimpleProcessor:
                 json_pred['lanes'] = []
                 json_pred['run_time'] = run_time * 1000
                 json_pred['h_sample'] = []
-
-                json_pred['raw_file'] = os.path.join(*path_list[-4:])
+                
+                json_pred['raw_file'] = os.path.join(*path_list[-3:])
                 for l in lane_coords:
                     if len(l) == 0:
                         continue
@@ -87,7 +88,7 @@ class TusimpleProcessor:
             if is_view:
                 img = cv2.imread(im_path[batch])
                 if is_dump_json:
-                    img_name = '_'.join([x for x in path_list[-4:]])
+                    img_name = '_'.join([x for x in path_list[-3:]])
                     sub_dir = 'visual_eval'
                 else:
                     img_name = os.path.basename(im_path[batch])

@@ -56,7 +56,7 @@ def parse_args():
 
 
 def main(args):
-    os.environ['pdseg_EXPORT_STAGE'] = 'True'
+    os.environ['PADDLESEG_EXPORT_STAGE'] = 'True'
     cfg = Config(args.cfg)
     net = cfg.model
 

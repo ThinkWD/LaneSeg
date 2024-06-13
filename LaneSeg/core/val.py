@@ -60,6 +60,7 @@ def evaluate(model,
 
     postprocessor = tusimple_processor.TusimpleProcessor(
         num_classes=eval_dataset.num_classes,
+        ori_shape=(1080, 1920),
         cut_height=eval_dataset.cut_height,
         test_gt_json=eval_dataset.test_gt_json,
         save_dir=save_dir, )

@@ -1,0 +1,115 @@
+#  Repositories : https://github.com/ThinkWD/LaneSeg
+#     Task type : Lane detection
+# Preprocessing : segmentation_labelme2seg.py       # generate voc png annotations
+#                 segmentation_labelme2tusimple.py  # generate tusimple annotations
+#   Base config : contrib/LaneSeg/configs/bisenetV2_tusimple_640x368_300k.yml
+#   Information : https://github.com/PaddlePaddle/PaddleSeg/blob/v2.5.0/contrib/LaneSeg/README_CN.md
+
+### Before training
+#   1. replace ${task_name} and ${config_name}
+#   2. set _dataset_root
+#   3. set _num_classes (including background)
+#   4. set _batch_size
+#   5. set _learning_rate
+#   6. All image must be 1920 * 1080 (cut_height, offset_top, target_size)
+#   7. loss - weights size must be equal to _num_classes
+
+### Start training
+#   cd LaneSeg
+#   export FLAGS_set_to_1d=False
+#   python3 train.py --config data/${task_name}/${config_name}.yml --do_eval --use_vdl --save_interval 500 --num_workers 5 --save_dir workspace/${task_name}
+
+### Visual prediction
+#   cd LaneSeg
+#   python3 predict.py --config data/${task_name}/${config_name}.yml --model_path workspace/${task_name}/best_model/model.pdparams --image_path data/${task_name}/src/test.txt --save_dir workspace/${task_name}/predict
+
+### Export inference model
+#   cd LaneSeg
+#   python3 export_model.py --config data/${task_name}/${config_name}.yml --input_shape 1 3 512 512 --model_path workspace/${task_name}/best_model/model.pdparams --save_dir workspace/${task_name}/inference
+
+########################################################################################
+## dataset root
+_dataset_root: &_dataset_root data/${task_name}/src/
+
+## number of classes
+_num_classes: &_num_classes 5
+
+## train batch size
+_batch_size: &_batch_size 8
+
+## base learning rate (default_base_lr: 0.001)
+_learning_rate: &_learning_rate 0.001
+
+#### >>>>> global <<<<< ######################################
+batch_size: *_batch_size
+iters: 300000
+
+model:
+  type: BiSeNetV2
+  num_classes: *_num_classes
+  pretrained: https://bj.bcebos.com/paddleseg/dygraph/cityscapes/bisenet_cityscapes_1024x1024_160k/model.pdparams
+
+loss:
+  types:
+    - type: LaneCrossEntropyLoss
+      weights: [0.4, 1.0, 1.0, 1.0, 1.0]
+    - type: LaneCrossEntropyLoss
+      weights: [0.4, 1.0, 1.0, 1.0, 1.0]
+    - type: LaneCrossEntropyLoss
+      weights: [0.4, 1.0, 1.0, 1.0, 1.0]
+    - type: LaneCrossEntropyLoss
+      weights: [0.4, 1.0, 1.0, 1.0, 1.0]
+    - type: LaneCrossEntropyLoss
+      weights: [0.4, 1.0, 1.0, 1.0, 1.0]
+  coef: [1, 1, 1, 1, 1]
+
+lr_scheduler:
+  type: PolynomialDecay
+  learning_rate: *_learning_rate
+  end_lr: 0
+  power: 0.9
+
+train_dataset:
+  type: Tusimple
+  dataset_root: *_dataset_root
+  cut_height: 240
+  transforms:
+    - type: SubImgCrop
+      offset_top: 240
+    - type: LaneRandomRotation
+      max_rotation: 10
+      im_padding_value: [0, 0, 0]
+      label_padding_value: 0
+      keeping_size: True
+    - type: RandomHorizontalFlip
+    - type: Resize
+      target_size: [960, 552]
+    - type: RandomDistort
+      brightness_range: 0.25
+      brightness_prob: 1
+      contrast_range: 0.25
+      contrast_prob: 1
+      saturation_range: 0.25
+      saturation_prob: 1
+      hue_range: 63
+      hue_prob: 1
+    - type: RandomNoise
+    - type: Normalize
+  mode: train
+
+val_dataset:
+  type: Tusimple
+  dataset_root: *_dataset_root
+  cut_height: 240
+  transforms:
+    - type: SubImgCrop
+      offset_top: 240
+    - type: Resize
+      target_size: [960, 552]
+    - type: Normalize
+  mode: val
+
+optimizer:
+  type: sgd
+  momentum: 0.9
+  weight_decay: 4.0e-5

@@ -1,7 +1,7 @@
 English | [简体中文](README_CN.md)
 
 # LaneSeg
-Lane detection is a category of automatic driving algorithms, which can be used to assist vehicle positioning and decision-making. In the early days, there were lane detection methods based on traditional image processing, but with the evolution of technology, the scenes that lane detection tasks deal with are more and more diversified, and more methods are currently seeking to detect the location of lane semantically. This project mainly uses pdseg260 for lane detection.
+Lane detection is a category of automatic driving algorithms, which can be used to assist vehicle positioning and decision-making. In the early days, there were lane detection methods based on traditional image processing, but with the evolution of technology, the scenes that lane detection tasks deal with are more and more diversified, and more methods are currently seeking to detect the location of lane semantically. This project mainly uses pdseg for lane detection.
 
 ## Contents
 - [Installation](#Installation)
@@ -20,18 +20,18 @@ Versions
 
 * Python >= 3.7+
 
-Due to the high computational cost of model, pdseg260 is recommended for GPU version PaddlePaddle. CUDA 10.0 or later is recommended. See [PaddlePaddle official website](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/pip/linux-pip.html) for the installation tutorial.
+Due to the high computational cost of model, pdseg is recommended for GPU version PaddlePaddle. CUDA 10.0 or later is recommended. See [PaddlePaddle official website](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/pip/linux-pip.html) for the installation tutorial.
 
-#### 2. Download the pdseg260 repository
+#### 2. Download the pdseg repository
 
 ```shell
-git clone https://github.com/PaddlePaddle/pdseg260
+git clone https://github.com/PaddlePaddle/pdseg
 ```
 
 #### 3. Installation
 
 ```shell
-cd pdseg260
+cd pdseg
 pip install scikit-learn
 pip install opencv-python
 pip install scikit-image
@@ -47,8 +47,8 @@ Lane detection model performance on Tusimple.
 
 | Method | Acc | FN | FP | Link|
 |-|-|-|-|-|
-|BiseNetV2|96.38%|0.04545|0.03363|[model](https://pdseg260.bj.bcebos.com/lane_seg/bisenet/model.pdparams)|
-|FastScnn|96.04% |0.04909|0.04058|[model](https://pdseg260.bj.bcebos.com/lane_seg/fastscnn/model.pdparams)|
+|BiseNetV2|96.38%|0.04545|0.03363|[model](https://pdseg.bj.bcebos.com/lane_seg/bisenet/model.pdparams)|
+|FastScnn|96.04% |0.04909|0.04058|[model](https://pdseg.bj.bcebos.com/lane_seg/fastscnn/model.pdparams)|
 
 Note: The model input size is (640, 368) and the GPU is Tesla V100 32G.
 

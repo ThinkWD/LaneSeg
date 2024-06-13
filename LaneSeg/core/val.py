@@ -19,7 +19,7 @@ import time
 import paddle
 import paddle.nn.functional as F
 
-from pdseg260.utils import metrics, TimeAverager, calculate_eta, logger, progbar
+from pdseg.utils import metrics, TimeAverager, calculate_eta, logger, progbar
 from . import infer
 from third_party import tusimple_processor
 

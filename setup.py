@@ -16,17 +16,17 @@
 from setuptools import find_packages
 from setuptools import setup
 
-import pdseg260
+import pdseg
 
 with open("requirements.txt") as file:
     REQUIRED_PACKAGES = file.read()
 
 setup(
     name='laneseg',
-    version=pdseg260.__version__.replace('-', ''),
+    version=pdseg.__version__.replace('-', ''),
     description=('End-to-end image segmentation kit based on PaddlePaddle.'),
     long_description='',
-    url='https://github.com/PaddlePaddle/pdseg260',
+    url='https://github.com/PaddlePaddle/pdseg',
     author='PaddlePaddle Author',
     author_email='',
     install_requires=REQUIRED_PACKAGES,
@@ -49,4 +49,4 @@ setup(
     ],
     license='Apache 2.0',
     keywords=(
-        'pdseg260 paddlepaddle semantic-segmentation instance-segmentation'))
+        'pdseg paddlepaddle semantic-segmentation instance-segmentation'))

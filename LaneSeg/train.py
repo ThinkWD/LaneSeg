@@ -18,8 +18,8 @@ import random
 import paddle
 import numpy as np
 
-from pdseg260.cvlibs import manager, Config
-from pdseg260.utils import get_sys_env, logger, config_check
+from pdseg.cvlibs import manager, Config
+from pdseg.utils import get_sys_env, logger, config_check
 from core.train import train
 from datasets import tusimple
 from losses import lane_cross_entropy_loss
@@ -113,7 +113,7 @@ def parse_args():
         type=str,
         default=None,
         help='The option of train profiler. If profiler_options is not None, the train ' \
-            'profiler is enabled. Refer to the pdseg260/utils/train_profiler.py for details.'
+            'profiler is enabled. Refer to the pdseg/utils/train_profiler.py for details.'
     )
 
     return parser.parse_args()

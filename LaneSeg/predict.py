@@ -17,8 +17,8 @@ import os
 
 import paddle
 
-from pdseg260.cvlibs import manager, Config
-from pdseg260.utils import get_sys_env, logger, config_check, get_image_list
+from pdseg.cvlibs import manager, Config
+from pdseg.utils import get_sys_env, logger, config_check, get_image_list
 from core import predict
 from datasets import tusimple
 
@@ -53,7 +53,7 @@ def parse_args():
         '--custom_color',
         dest='custom_color',
         nargs='+',
-        help='Save images with a custom color map. Default: None, use pdseg260\'s default color map.',
+        help='Save images with a custom color map. Default: None, use pdseg\'s default color map.',
         type=int,
         default=None)
     return parser.parse_args()

@@ -19,10 +19,10 @@ import cv2
 import numpy as np
 import paddle
 
-from pdseg260 import utils
+from pdseg import utils
 from . import infer
 from third_party import tusimple_processor
-from pdseg260.utils import logger, progbar, visualize
+from pdseg.utils import logger, progbar, visualize
 
 
 def mkdir(path):
@@ -54,7 +54,7 @@ def predict(model,
         image_list (list): A list of image path to be predicted.
         image_dir (str, optional): The root directory of the images predicted. Default: None.
         save_dir (str, optional): The directory to save the visualized results. Default: 'output'.
-        custom_color (list, optional): Save images with a custom color map. Default: None, use pdseg260's default color map.
+        custom_color (list, optional): Save images with a custom color map. Default: None, use pdseg's default color map.
 
     """
     utils.utils.load_entire_model(model, model_path)

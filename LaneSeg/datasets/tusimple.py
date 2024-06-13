@@ -17,8 +17,8 @@ import os
 import numpy as np
 import paddle
 
-from pdseg260.cvlibs import manager
-from pdseg260.transforms.transforms import Compose
+from pdseg.cvlibs import manager
+from pdseg.transforms.transforms import Compose
 from transforms.lane_transforms import LaneRandomRotation, SubImgCrop
 
 

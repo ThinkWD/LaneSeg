@@ -20,7 +20,7 @@ import shutil
 import paddle
 import paddle.nn.functional as F
 
-from pdseg260.utils import (TimeAverager, calculate_eta, resume, logger,
+from pdseg.utils import (TimeAverager, calculate_eta, resume, logger,
                              worker_init_fn, train_profiler, op_flops_funs)
 from .val import evaluate
 
@@ -86,7 +86,7 @@ def train(model,
         num_workers (int, optional): Num workers for data loader. Default: 0.
         use_vdl (bool, optional): Whether to record the data to VisualDL during training. Default: False.
         losses (dict, optional): A dict including 'types' and 'coef'. The length of coef should equal to 1 or len(losses['types']).
-            The 'types' item is a list of object of pdseg260.models.losses while the 'coef' item is a list of the relevant coefficient.
+            The 'types' item is a list of object of pdseg.models.losses while the 'coef' item is a list of the relevant coefficient.
         keep_checkpoint_max (int, optional): Maximum number of checkpoints to save. Default: 5.
         test_config(dict, optional): Evaluation config.
         fp16 (bool, optional): Whether to use amp.

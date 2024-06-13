@@ -1,7 +1,7 @@
 简体中文 | [English](README.md)
 
 # LaneSeg
-车道线检测是自动驾驶算法的一个范畴，可以用来辅助进行车辆定位和进行决策，早期已有基于传统图像处理的车道线检测方法，但是随着技术的演进，车道线检测任务所应对的场景越来越多样化，目前更多的方式是寻求在语义上对车道线存在位置的检测。本项目主要使用pdseg260进行车道线检测。
+车道线检测是自动驾驶算法的一个范畴，可以用来辅助进行车辆定位和进行决策，早期已有基于传统图像处理的车道线检测方法，但是随着技术的演进，车道线检测任务所应对的场景越来越多样化，目前更多的方式是寻求在语义上对车道线存在位置的检测。本项目主要使用pdseg进行车道线检测。
 
 
 ## 目录
@@ -22,18 +22,18 @@
 
 * Python >= 3.7+
 
-由于车道线模型计算开销大，推荐在GPU版本的PaddlePaddle下使用pdseg260。推荐安装10.0以上的CUDA环境。安装教程请见[PaddlePaddle官网](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/pip/linux-pip.html)。
+由于车道线模型计算开销大，推荐在GPU版本的PaddlePaddle下使用pdseg。推荐安装10.0以上的CUDA环境。安装教程请见[PaddlePaddle官网](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/pip/linux-pip.html)。
 
-#### 2. 下载pdseg260仓库
+#### 2. 下载pdseg仓库
 
 ```shell
-git clone https://github.com/PaddlePaddle/pdseg260
+git clone https://github.com/PaddlePaddle/pdseg
 ```
 
 #### 3. 安装
 
 ```shell
-cd pdseg260
+cd pdseg
 pip install scikit-learn
 pip install opencv-python
 pip install scikit-image
@@ -49,8 +49,8 @@ cd contrib/LaneSeg
 
 | Method | Acc | FP| FN | Link|
 |-|-|-|-|-|
-|BiseNetV2|96.38%|0.04545|0.03363|[model](https://pdseg260.bj.bcebos.com/lane_seg/bisenet/model.pdparams)|
-|FastScnn|96.04% |0.04909|0.04058|[model](https://pdseg260.bj.bcebos.com/lane_seg/fastscnn/model.pdparams)|
+|BiseNetV2|96.38%|0.04545|0.03363|[model](https://pdseg.bj.bcebos.com/lane_seg/bisenet/model.pdparams)|
+|FastScnn|96.04% |0.04909|0.04058|[model](https://pdseg.bj.bcebos.com/lane_seg/fastscnn/model.pdparams)|
 
 注意：模型输入大小为(640, 368), GPU为Tesla V100 32G。
 

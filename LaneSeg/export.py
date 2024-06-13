@@ -18,8 +18,8 @@ import os
 import paddle
 import yaml
 
-from pdseg260.cvlibs import Config
-from pdseg260.utils import logger
+from pdseg.cvlibs import Config
+from pdseg.utils import logger
 from datasets import tusimple
 
 
@@ -56,7 +56,7 @@ def parse_args():
 
 
 def main(args):
-    os.environ['pdseg260_EXPORT_STAGE'] = 'True'
+    os.environ['pdseg_EXPORT_STAGE'] = 'True'
     cfg = Config(args.cfg)
     net = cfg.model
 

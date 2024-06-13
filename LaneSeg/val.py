@@ -17,9 +17,9 @@ import os
 
 import paddle
 
-from pdseg260.cvlibs import manager, Config
+from pdseg.cvlibs import manager, Config
 from core import evaluate
-from pdseg260.utils import get_sys_env, logger, config_check, utils
+from pdseg.utils import get_sys_env, logger, config_check, utils
 from datasets import tusimple
 
 

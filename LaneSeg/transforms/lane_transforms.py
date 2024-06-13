@@ -15,7 +15,7 @@
 import cv2
 import numpy as np
 
-from pdseg260.cvlibs import manager
+from pdseg.cvlibs import manager
 
 
 @manager.TRANSFORMS.add_component
